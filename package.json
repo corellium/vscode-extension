@@ -1,0 +1,101 @@
+{
+  "name": "corellium",
+  "displayName": "Corellium",
+  "description": "",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.68.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:corellium.helloWorld",
+    "onView:virtualDevices"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "corellium.refreshDevices",
+        "title": "Refresh Devices",
+        "icon": {
+            "light": "resources/light/refresh.svg",
+            "dark": "resources/dark/refresh.svg"
+        }
+      }, {
+        "command": "corellium.startDevice",
+        "title": "Turn On Device"
+      }, {
+        "command": "corellium.stopDevice",
+        "title": "Turn Off Device"
+      }
+    ],
+    "views": {
+			"explorer": [
+				{
+					"id": "virtualDevices",
+					"name": "Corellium Devices"
+				}
+			]
+		},
+    "configuration": {
+      "title": "Corellium",
+      "properties": {
+        "corellium.endpoint": {
+          "type": "string",
+          "default": "https://app.corellium.com/api",
+          "description": "API endpoint for the Corellium server",
+          "format": "uri"
+        },
+        "corellium.ApiKey": {
+          "type": "string",
+          "default": "",
+          "description": "The API key (from Profile->API in the web UI)"
+        }
+      }
+    },
+    "menus": {
+			"view/title": [
+				{
+					"command": "corellium.refreshDevices",
+					"when": "view == virtualDevices",
+					"group": "navigation"
+				}
+			],
+			"view/item/context": [
+				{
+					"command": "corellium.startDevice",
+					"when": "view == virtualDevices && viewItem == off"
+				}, {
+					"command": "corellium.stopDevice",
+					"when": "view == virtualDevices && viewItem == on"
+				}
+			]
+		}
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "dependencies": {
+    "@corellium/client-api": "^0.1.0"
+  },
+  "devDependencies": {
+    "@types/glob": "^7.2.0",
+    "@types/mocha": "^9.1.1",
+    "@types/node": "16.x",
+    "@types/vscode": "^1.68.0",
+    "@typescript-eslint/eslint-plugin": "^5.27.0",
+    "@typescript-eslint/parser": "^5.27.0",
+    "@vscode/test-electron": "^2.1.3",
+    "eslint": "^8.16.0",
+    "glob": "^8.0.3",
+    "mocha": "^10.0.0",
+    "typescript": "^4.7.2"
+  }
+}

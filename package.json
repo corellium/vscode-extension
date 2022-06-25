@@ -29,6 +29,9 @@
       }, {
         "command": "corellium.stopDevice",
         "title": "Turn Off Device"
+      }, {
+          "command": "corellium.openInBrowser",
+          "title": "Open in Browser"
       }
     ],
     "views": {
@@ -44,8 +47,8 @@
       "properties": {
         "corellium.endpoint": {
           "type": "string",
-          "default": "https://app.corellium.com/api",
-          "description": "API endpoint for the Corellium server",
+          "default": "https://app.corellium.com",
+          "description": "URL of the Corellium server (e.g. https://mycompany.enterprise.corellium.com)",
           "format": "uri"
         },
         "corellium.ApiKey": {
@@ -70,6 +73,9 @@
 				}, {
 					"command": "corellium.stopDevice",
 					"when": "view == virtualDevices && viewItem == on"
+        }, {
+            "command": "corellium.openInBrowser",
+            "when": "view == virtualDevices"
 				}
 			]
 		}

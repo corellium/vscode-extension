@@ -98,7 +98,8 @@ export function activate(context: vscode.ExtensionContext) {
 	// Set up the API client object, note that apiInstance is global
 	let configuration = vscode.workspace.getConfiguration('corellium');	
 	let defaultClient = corelliumClient.ApiClient.instance;
-	defaultClient.basePath = configuration.get('endpoint');
+	let endpoint = configuration.get('endpoint');
+	defaultClient.basePath = endpoint + '/api';
 	let bearerAuth = defaultClient.authentications['BearerAuth'];
 	bearerAuth.accessToken = configuration.get('ApiKey');
 	apiInstance = new corelliumClient.CorelliumApi();
@@ -116,12 +117,18 @@ export function activate(context: vscode.ExtensionContext) {
 		apiInstance.v1StopInstance(instance.instanceUUID, null);
 	};
 
+	let openInBrowserCommandHandler = (instance: CorelliumInstance) => {
+		let url = endpoint + '/devices/' + instance.instanceUUID + '/connect';
+		vscode.env.openExternal(vscode.Uri.parse(url));
+	};
+
 	let refreshDevicesCommandHandler = () => {
 		virtualDevicesProvider.refresh();
 	};
 
 	context.subscriptions.push(vscode.commands.registerCommand('corellium.startDevice', turnOnDeviceCommandHandler));
 	context.subscriptions.push(vscode.commands.registerCommand('corellium.stopDevice', turnOffDeviceCommandHandler));
+	context.subscriptions.push(vscode.commands.registerCommand('corellium.openInBrowser', openInBrowserCommandHandler));
 	context.subscriptions.push(vscode.commands.registerCommand('corellium.refreshDevices', refreshDevicesCommandHandler));
 }
 

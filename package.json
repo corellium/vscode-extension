@@ -10,7 +10,6 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:corellium.helloWorld",
     "onView:virtualDevices"
   ],
   "main": "./out/extension.js",
@@ -29,6 +28,9 @@
       }, {
         "command": "corellium.stopDevice",
         "title": "Turn Off Device"
+      }, {
+          "command": "corellium.rebootDevice",
+          "title": "Reboot Device"
       }, {
           "command": "corellium.openInBrowser",
           "title": "Open in Browser"
@@ -73,6 +75,9 @@
 				}, {
 					"command": "corellium.stopDevice",
 					"when": "view == virtualDevices && viewItem == on"
+        }, {
+            "command": "corellium.rebootDevice",
+            "when": "view == virtualDevices && viewItem == on"
         }, {
             "command": "corellium.openInBrowser",
             "when": "view == virtualDevices"

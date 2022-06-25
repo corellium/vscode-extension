@@ -110,11 +110,27 @@ export function activate(context: vscode.ExtensionContext) {
 
 	// Command handlers
 	let turnOnDeviceCommandHandler = (instance: CorelliumInstance) => {
-		apiInstance.v1StartInstance(instance.instanceUUID, null);
+		apiInstance.v1StartInstance(instance.instanceUUID, null).then(() => {
+			vscode.window.showInformationMessage("Turning on " + instance.label);
+		}, (error: Error) => {
+			vscode.window.showErrorMessage("Failed to turn on device: " + error.message);
+		});
 	};
 
 	let turnOffDeviceCommandHandler = (instance: CorelliumInstance) => {
-		apiInstance.v1StopInstance(instance.instanceUUID, null);
+		apiInstance.v1StopInstance(instance.instanceUUID, null).then(() => {
+			vscode.window.showInformationMessage("Turning off " + instance.label);
+		}, (error: Error) => {
+			vscode.window.showErrorMessage("Failed to turn off device: " + error.message);
+		});
+	};
+
+	let rebootDeviceCommandHandler = (instance: CorelliumInstance) => {
+		apiInstance.v1RebootInstance(instance.instanceUUID).then(() => {
+			vscode.window.showInformationMessage("Rebooting " + instance.label);
+		}, (error: Error) => {
+			vscode.window.showErrorMessage("Failed to reboot device: " + error.message);
+		});
 	};
 
 	let openInBrowserCommandHandler = (instance: CorelliumInstance) => {
@@ -128,6 +144,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 	context.subscriptions.push(vscode.commands.registerCommand('corellium.startDevice', turnOnDeviceCommandHandler));
 	context.subscriptions.push(vscode.commands.registerCommand('corellium.stopDevice', turnOffDeviceCommandHandler));
+	context.subscriptions.push(vscode.commands.registerCommand('corellium.rebootDevice', rebootDeviceCommandHandler));
 	context.subscriptions.push(vscode.commands.registerCommand('corellium.openInBrowser', openInBrowserCommandHandler));
 	context.subscriptions.push(vscode.commands.registerCommand('corellium.refreshDevices', refreshDevicesCommandHandler));
 }

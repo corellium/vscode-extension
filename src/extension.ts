@@ -175,6 +175,54 @@ export function activate(context: vscode.ExtensionContext) {
 		terminal.show();
 	};
 
+	let takeSnapshotCommandHandler = async (instance: CorelliumInstance) => {
+		const snapshotName = await vscode.window.showInputBox({
+			placeHolder: "My New Snapshot",
+			prompt: "Snapshot Name:",
+			value: "My New Snapshot"
+		});
+		let snapshotCreationOptions = {
+			name: snapshotName
+		};
+		apiInstance.v1CreateSnapshot(instance.instanceUUID, snapshotCreationOptions).then((data: corelliumClient.Snapshot) => {
+			vscode.window.showInformationMessage(`Snapshotting ${instance.label}: ${data.id}`);
+		}, (error: Error) => {
+			vscode.window.showErrorMessage("Failed to take snapshot: " + error.message);
+		});
+	};
+
+	let restoreSnapshotCommandHandler = async (instance: CorelliumInstance) => {
+		let items: vscode.QuickPickItem[] = [];
+		let snapshots = null;
+
+		try {
+			snapshots = await apiInstance.v1GetSnapshots(instance.instanceUUID);
+		} catch (error: any) {
+			vscode.window.showErrorMessage("Failed to fetch snapshots: " + error.message);
+			return;
+		}
+
+		for (let index = 0; index < snapshots.length; index++) {
+			let item = snapshots[index];
+			items.push({
+				label: item.name,
+				description: item.id});
+		}
+
+		let selection = await vscode.window.showQuickPick(items);
+		if (!selection) {
+			// User cancelled
+			return;
+		}
+
+		try {
+			await apiInstance.v1RestoreSnapshot(instance.instanceUUID, selection.description);
+			vscode.window.showInformationMessage(`Restoring snapshot ${selection.label} on ${instance.label}`);
+		} catch (error: any) {
+			vscode.window.showErrorMessage("Failed to restore snapshot: " + error.message);
+		}
+	};
+
 	let refreshDevicesCommandHandler = () => {
 		virtualDevicesProvider.refresh();
 	};
@@ -184,6 +232,8 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(vscode.commands.registerCommand('corellium.rebootDevice', rebootDeviceCommandHandler));
 	context.subscriptions.push(vscode.commands.registerCommand('corellium.openInBrowser', openInBrowserCommandHandler));
 	context.subscriptions.push(vscode.commands.registerCommand('corellium.openConsole', openConsoleCommandHandler));
+	context.subscriptions.push(vscode.commands.registerCommand('corellium.takeSnapshot', takeSnapshotCommandHandler));
+	context.subscriptions.push(vscode.commands.registerCommand('corellium.restoreSnapshot', restoreSnapshotCommandHandler));
 	context.subscriptions.push(vscode.commands.registerCommand('corellium.refreshDevices', refreshDevicesCommandHandler));
 }
 

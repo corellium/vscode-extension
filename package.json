@@ -42,6 +42,12 @@
       {
         "command": "corellium.openConsole",
         "title": "Open Console"
+      }, {
+        "command": "corellium.takeSnapshot",
+        "title": "Take Snapshot"
+      }, {
+        "command": "corellium.restoreSnapshot",
+        "title": "Restore Snapshot"
       }
     ],
     "views": {
@@ -95,6 +101,12 @@
         },
         {
           "command": "corellium.openConsole",
+          "when": "view == virtualDevices && viewItem == on"
+        }, {
+          "command": "corellium.takeSnapshot",
+          "when": "view == virtualDevices && viewItem == on"
+        }, {
+          "command": "corellium.restoreSnapshot",
           "when": "view == virtualDevices && viewItem == on"
         }
       ]

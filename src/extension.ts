@@ -1,7 +1,35 @@
 import * as vscode from 'vscode';
 const corelliumClient = require('@corellium/client-api');
+const ws = require('ws');
 
 let apiInstance: any = null;
+
+export default class CorelliumConsole implements vscode.Pseudoterminal {
+	private writeEmitter: vscode.EventEmitter<string>;
+	private consoleWebSocket: ws.WebSocket;
+
+	onDidWrite: vscode.Event<string>;
+
+	constructor(consoleWSUrl: string) {
+		this.writeEmitter = new vscode.EventEmitter<string>();
+		this.onDidWrite = this.writeEmitter.event;
+
+		this.consoleWebSocket = new ws.WebSocket(consoleWSUrl);
+		this.consoleWebSocket.on('message', (data: any) => {
+			this.writeEmitter.fire(data.toString());
+		});
+	}
+
+	open(): void {}
+
+	close(): void {
+		this.consoleWebSocket.close();
+	}
+
+	handleInput(data: string): void {
+		this.consoleWebSocket.send(data);
+	}
+};
 
 export class VirtualDevicesProvider implements vscode.TreeDataProvider<CorelliumInstance> {
 	constructor() {}
@@ -138,6 +166,15 @@ export function activate(context: vscode.ExtensionContext) {
 		vscode.env.openExternal(vscode.Uri.parse(url));
 	};
 
+	// const writeEmitter = new vscode.EventEmitter<string>();
+	let openConsoleCommandHandler = async (instance: CorelliumInstance) => {
+		let consoleResult = await apiInstance.v1GetInstanceConsole(instance.instanceUUID);
+		let consoleWSUrl = consoleResult["url"];
+		const pty = new CorelliumConsole(consoleWSUrl);
+		const terminal = vscode.window.createTerminal({name: `Console: ${instance.label}`, pty: pty});
+		terminal.show();
+	};
+
 	let refreshDevicesCommandHandler = () => {
 		virtualDevicesProvider.refresh();
 	};
@@ -146,6 +183,7 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(vscode.commands.registerCommand('corellium.stopDevice', turnOffDeviceCommandHandler));
 	context.subscriptions.push(vscode.commands.registerCommand('corellium.rebootDevice', rebootDeviceCommandHandler));
 	context.subscriptions.push(vscode.commands.registerCommand('corellium.openInBrowser', openInBrowserCommandHandler));
+	context.subscriptions.push(vscode.commands.registerCommand('corellium.openConsole', openConsoleCommandHandler));
 	context.subscriptions.push(vscode.commands.registerCommand('corellium.refreshDevices', refreshDevicesCommandHandler));
 }
 

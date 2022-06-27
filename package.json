@@ -19,31 +19,39 @@
         "command": "corellium.refreshDevices",
         "title": "Refresh Devices",
         "icon": {
-            "light": "resources/light/refresh.svg",
-            "dark": "resources/dark/refresh.svg"
+          "light": "resources/light/refresh.svg",
+          "dark": "resources/dark/refresh.svg"
         }
-      }, {
+      },
+      {
         "command": "corellium.startDevice",
         "title": "Turn On Device"
-      }, {
+      },
+      {
         "command": "corellium.stopDevice",
         "title": "Turn Off Device"
-      }, {
-          "command": "corellium.rebootDevice",
-          "title": "Reboot Device"
-      }, {
-          "command": "corellium.openInBrowser",
-          "title": "Open in Browser"
+      },
+      {
+        "command": "corellium.rebootDevice",
+        "title": "Reboot Device"
+      },
+      {
+        "command": "corellium.openInBrowser",
+        "title": "Open in Browser"
+      },
+      {
+        "command": "corellium.openConsole",
+        "title": "Open Console"
       }
     ],
     "views": {
-			"explorer": [
-				{
-					"id": "virtualDevices",
-					"name": "Corellium Devices"
-				}
-			]
-		},
+      "explorer": [
+        {
+          "id": "virtualDevices",
+          "name": "Corellium Devices"
+        }
+      ]
+    },
     "configuration": {
       "title": "Corellium",
       "properties": {
@@ -61,29 +69,36 @@
       }
     },
     "menus": {
-			"view/title": [
-				{
-					"command": "corellium.refreshDevices",
-					"when": "view == virtualDevices",
-					"group": "navigation"
-				}
-			],
-			"view/item/context": [
-				{
-					"command": "corellium.startDevice",
-					"when": "view == virtualDevices && viewItem == off"
-				}, {
-					"command": "corellium.stopDevice",
-					"when": "view == virtualDevices && viewItem == on"
-        }, {
-            "command": "corellium.rebootDevice",
-            "when": "view == virtualDevices && viewItem == on"
-        }, {
-            "command": "corellium.openInBrowser",
-            "when": "view == virtualDevices"
-				}
-			]
-		}
+      "view/title": [
+        {
+          "command": "corellium.refreshDevices",
+          "when": "view == virtualDevices",
+          "group": "navigation"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "corellium.startDevice",
+          "when": "view == virtualDevices && viewItem == off"
+        },
+        {
+          "command": "corellium.stopDevice",
+          "when": "view == virtualDevices && viewItem == on"
+        },
+        {
+          "command": "corellium.rebootDevice",
+          "when": "view == virtualDevices && viewItem == on"
+        },
+        {
+          "command": "corellium.openInBrowser",
+          "when": "view == virtualDevices"
+        },
+        {
+          "command": "corellium.openConsole",
+          "when": "view == virtualDevices && viewItem == on"
+        }
+      ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
@@ -94,13 +109,15 @@
     "test": "node ./out/test/runTest.js"
   },
   "dependencies": {
-    "@corellium/client-api": "^0.1.0"
+    "@corellium/client-api": "^0.1.0",
+    "ws": "^8.6.0"
   },
   "devDependencies": {
     "@types/glob": "^7.2.0",
     "@types/mocha": "^9.1.1",
     "@types/node": "16.x",
     "@types/vscode": "^1.68.0",
+    "@types/ws": "^8.5.3",
     "@typescript-eslint/eslint-plugin": "^5.27.0",
     "@typescript-eslint/parser": "^5.27.0",
     "@vscode/test-electron": "^2.1.3",

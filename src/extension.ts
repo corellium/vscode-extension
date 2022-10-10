@@ -178,6 +178,10 @@ export const activate = (context: ExtensionContext): void => {
     virtualDevicesProvider.refresh();
   };
 
+  setInterval(() => {
+    refreshDevicesCommandHandler();
+  }, 5000);
+
   context.subscriptions.push(
     commands.registerCommand(
       'corellium.startDevice',
@@ -227,6 +231,5 @@ export const activate = (context: ExtensionContext): void => {
 
 // this method is called when your extension is deactivated
 export const deactivate = (): void => {
-  // eslint-disable-next-line no-console
-  console.log('Deactivating...');
+  apiInstance = null;
 };

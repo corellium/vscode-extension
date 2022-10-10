@@ -1,12 +1,12 @@
 import * as vscode from 'vscode';
-const corelliumClient = require('@corellium/client-api');
-const ws = require('ws');
+import * as corelliumClient from '@corellium/client-api';
+import { WebSocket } from 'ws';
 
 let apiInstance: any = null;
 
 export default class CorelliumConsole implements vscode.Pseudoterminal {
 	private writeEmitter: vscode.EventEmitter<string>;
-	private consoleWebSocket: ws.WebSocket;
+	private consoleWebSocket: WebSocket;
 
 	onDidWrite: vscode.Event<string>;
 
@@ -14,7 +14,7 @@ export default class CorelliumConsole implements vscode.Pseudoterminal {
 		this.writeEmitter = new vscode.EventEmitter<string>();
 		this.onDidWrite = this.writeEmitter.event;
 
-		this.consoleWebSocket = new ws.WebSocket(consoleWSUrl);
+		this.consoleWebSocket = new WebSocket(consoleWSUrl);
 		this.consoleWebSocket.on('message', (data: any) => {
 			this.writeEmitter.fire(data.toString());
 		});
@@ -184,7 +184,7 @@ export function activate(context: vscode.ExtensionContext) {
 		let snapshotCreationOptions = {
 			name: snapshotName
 		};
-		apiInstance.v1CreateSnapshot(instance.instanceUUID, snapshotCreationOptions).then((data: corelliumClient.Snapshot) => {
+		apiInstance.v1CreateSnapshot(instance.instanceUUID, snapshotCreationOptions).then((data: { id: string }) => {
 			vscode.window.showInformationMessage(`Snapshotting ${instance.label}: ${data.id}`);
 		}, (error: Error) => {
 			vscode.window.showErrorMessage("Failed to take snapshot: " + error.message);

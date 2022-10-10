@@ -31,12 +31,14 @@ class VirtualDevicesProvider implements TreeDataProvider<CorelliumInstance> {
         const totalCores = project.quotas.cores;
         const cores = `${usedCores}/${totalCores} cores used`;
 
-        return {
+        const treeItem: TreeItem & { projectUUID: string } = {
           label: project.name,
           collapsibleState: TreeItemCollapsibleState.Expanded,
           projectUUID: project.id,
           description: cores,
         };
+
+        return treeItem;
       });
 
       return projectItems as CorelliumInstance[];
@@ -61,7 +63,7 @@ class VirtualDevicesProvider implements TreeDataProvider<CorelliumInstance> {
       const description = `(${instance.flavor}, ${instance.os}) - ${instance.state}`;
       const tooltip = `Services: ${instance.serviceIp}, Wi-Fi: ${instance.wifiIp}`;
 
-      return {
+      const treeItem: TreeItem & { instanceUUID: string } = {
         label: name,
         collapsibleState: TreeItemCollapsibleState.None,
         instanceUUID: instance.id,
@@ -69,9 +71,11 @@ class VirtualDevicesProvider implements TreeDataProvider<CorelliumInstance> {
         description,
         contextValue: instance.state,
       };
+
+      return treeItem as CorelliumInstance;
     });
 
-    return instanceItems as CorelliumInstance[];
+    return instanceItems;
   }
 
   // eslint-disable-next-line @typescript-eslint/member-ordering

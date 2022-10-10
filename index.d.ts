@@ -50,5 +50,36 @@ declare module '@corellium/client-api' {
       snapshotId: string,
       opts?: Record<string, unknown>
     ): Promise<never>;
+    public v1GetProjects(opts?: Record<string, unknown>): Promise<
+      {
+        id: string;
+        name: string;
+        quotas: {
+          cores: number;
+          instances: number;
+          storage: number;
+        };
+        quotasUsed: {
+          cores: number;
+          instances: number;
+          storage: number;
+        };
+      }[]
+    >;
+    public v1GetProjectInstances(
+      projectUUID: string,
+      opts?: Record<string, unknown>
+    ): Promise<
+      {
+        id: string;
+        name?: string;
+        type: string;
+        flavor: string;
+        os: string;
+        state: string;
+        serviceIp: string;
+        wifiIp: string;
+      }[]
+    >;
   }
 }

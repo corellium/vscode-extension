@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-parameter-properties */
 import type { TreeItemCollapsibleState } from 'vscode';
 import { TreeItem } from 'vscode';
 
 class CorelliumInstance extends TreeItem {
-  constructor(
+  public constructor(
     public readonly label: string,
     private version: string,
     public projectUUID: string,

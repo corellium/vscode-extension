@@ -1,90 +1,88 @@
-import type { TreeDataProvider } from 'vscode';
+import { EventEmitter, TreeItemCollapsibleState } from 'vscode';
+import type { Event, TreeDataProvider, TreeItem } from 'vscode';
+import type { CorelliumApi } from '@corellium/client-api';
 import type CorelliumInstance from './corelliumInstance';
 
 class VirtualDevicesProvider implements TreeDataProvider<CorelliumInstance> {
-  constructor() {}
+  private apiInstance: CorelliumApi;
 
-  getTreeItem(element: CorelliumInstance): vscode.TreeItem {
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  private _onDidChangeTreeData: EventEmitter<
+    CorelliumInstance | undefined | null
+  > = new EventEmitter<CorelliumInstance | undefined | null>();
+
+  public constructor(apiInstance: CorelliumApi) {
+    this.apiInstance = apiInstance;
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  public getTreeItem(element: CorelliumInstance): TreeItem {
     return element;
   }
 
-  getChildren(element: CorelliumInstance): Thenable<CorelliumInstance[]> {
-    if (element) {
-      if (element.projectUUID !== null && element.projectUUID !== undefined) {
-        return apiInstance
-          .v1GetProjectInstances(element.projectUUID, null)
-          .then(
-            async (instances: []) => {
-              const instanceItems = [];
-              for (const instance of instances) {
-                let name = null;
-                if (!instance.name) {
-                  if (instance.type === 'android') {
-                    name = 'Generic Android';
-                  } else {
-                    name = instance.flavor;
-                  }
-                } else {
-                  name = instance.name;
-                }
+  public async getChildren(
+    element?: CorelliumInstance
+  ): Promise<CorelliumInstance[]> {
+    if (!element) {
+      const projects = await this.apiInstance.v1GetProjects();
 
-                const description = `(${instance.flavor}, ${instance.os}) - ${instance.state}`;
-                const tooltip = `Services: ${instance.serviceIp}, Wi-Fi: ${instance.wifiIp}`;
+      const projectItems = projects.map((project) => {
+        const usedCores = project.quotasUsed.cores;
+        const totalCores = project.quotas.cores;
+        const cores = `${usedCores}/${totalCores} cores used`;
 
-                const instanceItem = {
-                  label: name,
-                  collapsibleState: vscode.TreeItemCollapsibleState.None,
-                  instanceUUID: instance.id,
-                  tooltip,
-                  description,
-                  contextValue: instance.state,
-                };
-                instanceItems.push(instanceItem);
-              }
-              return Promise.resolve(instanceItems);
-            },
-            (error: Error) => {
-              console.error(error);
-            }
-          );
-      }
-      console.log(`Device: ${element.label}`);
+        return {
+          label: project.name,
+          collapsibleState: TreeItemCollapsibleState.Expanded,
+          projectUUID: project.id,
+          description: cores,
+        };
+      });
 
-      return Promise.resolve([]);
+      return projectItems as CorelliumInstance[];
     }
-    return apiInstance.v1GetProjects(null).then(
-      async (projects: []) => {
-        const projectItems = [];
-        for (const project of projects) {
-          const usedCores = project.quotasUsed.cores;
-          const totalCores = project.quotas.cores;
-          const cores = `${usedCores}/${totalCores} cores used`;
-          const projectItem = {
-            label: project.name,
-            collapsibleState: vscode.TreeItemCollapsibleState.Expanded,
-            projectUUID: project.id,
-            description: cores,
-          };
-          projectItems.push(projectItem);
-        }
-        return Promise.resolve(projectItems);
-      },
-      (error: Error) => {
-        console.error(error);
-      }
+
+    if (!element.projectUUID) {
+      return [];
+    }
+
+    const instances = await this.apiInstance.v1GetProjectInstances(
+      element.projectUUID
     );
+
+    const instanceItems = instances.map((instance) => {
+      let { name } = instance;
+
+      if (!name) {
+        name =
+          instance.type === 'android' ? 'Generic Android' : instance.flavor;
+      }
+
+      const description = `(${instance.flavor}, ${instance.os}) - ${instance.state}`;
+      const tooltip = `Services: ${instance.serviceIp}, Wi-Fi: ${instance.wifiIp}`;
+
+      return {
+        label: name,
+        collapsibleState: TreeItemCollapsibleState.None,
+        instanceUUID: instance.id,
+        tooltip,
+        description,
+        contextValue: instance.state,
+      };
+    });
+
+    return instanceItems as CorelliumInstance[];
   }
 
-  private _onDidChangeTreeData: vscode.EventEmitter<
-    CorelliumInstance | undefined | null | void
-  > = new vscode.EventEmitter<CorelliumInstance | undefined | null | void>();
-
-  readonly onDidChangeTreeData: vscode.Event<
-    CorelliumInstance | undefined | null | void
+  // eslint-disable-next-line @typescript-eslint/member-ordering
+  public readonly onDidChangeTreeData: Event<
+    CorelliumInstance | undefined | null
+    // eslint-disable-next-line no-underscore-dangle
   > = this._onDidChangeTreeData.event;
 
-  refresh(): void {
-    this._onDidChangeTreeData.fire();
+  public refresh(): void {
+    // eslint-disable-next-line no-underscore-dangle
+    this._onDidChangeTreeData.fire(null);
   }
 }
 

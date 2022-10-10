@@ -27,7 +27,7 @@ export const activate = (context: ExtensionContext): void => {
   apiInstance = new CorelliumApi();
 
   // Set up tree view for projects/devices
-  const virtualDevicesProvider = new VirtualDevicesProvider();
+  const virtualDevicesProvider = new VirtualDevicesProvider(apiInstance);
   window.registerTreeDataProvider('virtualDevices', virtualDevicesProvider);
 
   // Command handlers

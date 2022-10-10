@@ -61,6 +61,26 @@ export const activate = (context: ExtensionContext): void => {
     }
   };
 
+  const pauseDeviceCommandHandler = async (instance: CorelliumInstance) => {
+    try {
+      await apiInstance?.v1PauseInstance(instance.instanceUUID);
+      await window.showInformationMessage(`Pausing ${instance.label}`);
+    } catch (error) {
+      const message = parseError(error);
+      await window.showErrorMessage(`Failed to pause device: ${message}`);
+    }
+  };
+
+  const unpauseDeviceCommandHandler = async (instance: CorelliumInstance) => {
+    try {
+      await apiInstance?.v1UnpauseInstance(instance.instanceUUID);
+      await window.showInformationMessage(`Unpausing ${instance.label}`);
+    } catch (error) {
+      const message = parseError(error);
+      await window.showErrorMessage(`Failed to unpause device: ${message}`);
+    }
+  };
+
   const openInBrowserCommandHandler = async (instance: CorelliumInstance) => {
     const parsedEndpoint =
       typeof endpoint === 'string' ? endpoint : 'https://app.corellium.com';
@@ -198,6 +218,15 @@ export const activate = (context: ExtensionContext): void => {
     commands.registerCommand(
       'corellium.rebootDevice',
       rebootDeviceCommandHandler
+    )
+  );
+  context.subscriptions.push(
+    commands.registerCommand('corellium.pauseDevice', pauseDeviceCommandHandler)
+  );
+  context.subscriptions.push(
+    commands.registerCommand(
+      'corellium.unpauseDevice',
+      unpauseDeviceCommandHandler
     )
   );
   context.subscriptions.push(

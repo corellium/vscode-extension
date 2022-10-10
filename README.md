@@ -5,6 +5,8 @@
 - Start a device
 - Stop a device
 - Reboot a device
+- Pause a device
+- Resume (unpause) a device
 - Open a device in browser
 - Open a device console
 - Take a snapshot

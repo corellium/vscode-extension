@@ -36,6 +36,14 @@
         "title": "Corellium: Reboot Device"
       },
       {
+        "command": "corellium.pauseDevice",
+        "title": "Corellium: Pause Device"
+      },
+      {
+        "command": "corellium.unpauseDevice",
+        "title": "Corellium: Unpause Device"
+      },
+      {
         "command": "corellium.openInBrowser",
         "title": "Corellium: Open in Browser"
       },
@@ -96,6 +104,14 @@
         {
           "command": "corellium.rebootDevice",
           "when": "view == virtualDevices && viewItem == on"
+        },
+        {
+          "command": "corellium.pauseDevice",
+          "when": "view == virtualDevices && viewItem == on"
+        },
+        {
+          "command": "corellium.unpauseDevice",
+          "when": "view == virtualDevices && viewItem == paused"
         },
         {
           "command": "corellium.openInBrowser",

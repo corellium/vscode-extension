@@ -81,5 +81,13 @@ declare module '@corellium/client-api' {
         wifiIp: string;
       }[]
     >;
+    public v1PauseInstance(
+      instanceUUID: string,
+      opts?: Record<string, unknown>
+    ): Promise<never>;
+    public v1UnpauseInstance(
+      instanceUUID: string,
+      opts?: Record<string, unknown>
+    ): Promise<never>;
   }
 }

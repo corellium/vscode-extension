@@ -17,7 +17,7 @@
     "commands": [
       {
         "command": "corellium.refreshDevices",
-        "title": "Refresh Devices",
+        "title": "Corellium: Refresh Devices",
         "icon": {
           "light": "resources/light/refresh.svg",
           "dark": "resources/dark/refresh.svg"
@@ -25,31 +25,31 @@
       },
       {
         "command": "corellium.startDevice",
-        "title": "Turn On Device"
+        "title": "Corellium: Turn On Device"
       },
       {
         "command": "corellium.stopDevice",
-        "title": "Turn Off Device"
+        "title": "Corellium: Turn Off Device"
       },
       {
         "command": "corellium.rebootDevice",
-        "title": "Reboot Device"
+        "title": "Corellium: Reboot Device"
       },
       {
         "command": "corellium.openInBrowser",
-        "title": "Open in Browser"
+        "title": "Corellium: Open in Browser"
       },
       {
         "command": "corellium.openConsole",
-        "title": "Open Console"
+        "title": "Corellium: Open Console"
       },
       {
         "command": "corellium.takeSnapshot",
-        "title": "Take Snapshot"
+        "title": "Corellium: Take Snapshot"
       },
       {
         "command": "corellium.restoreSnapshot",
-        "title": "Restore Snapshot"
+        "title": "Corellium: Restore Snapshot"
       }
     ],
     "views": {

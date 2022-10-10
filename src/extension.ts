@@ -30,10 +30,15 @@ export const activate = (context: ExtensionContext): void => {
   const virtualDevicesProvider = new VirtualDevicesProvider(apiInstance);
   window.registerTreeDataProvider('virtualDevices', virtualDevicesProvider);
 
+  const refreshDevicesCommandHandler = () => {
+    virtualDevicesProvider.refresh();
+  };
+
   // Command handlers
   const turnOnDeviceCommandHandler = async (instance: CorelliumInstance) => {
     try {
       await apiInstance?.v1StartInstance(instance.instanceUUID);
+      refreshDevicesCommandHandler();
       await window.showInformationMessage(`Turning on ${instance.label}`);
     } catch (error) {
       const message = parseError(error);
@@ -44,6 +49,7 @@ export const activate = (context: ExtensionContext): void => {
   const turnOffDeviceCommandHandler = async (instance: CorelliumInstance) => {
     try {
       await apiInstance?.v1StopInstance(instance.instanceUUID);
+      refreshDevicesCommandHandler();
       await window.showInformationMessage(`Turning off ${instance.label}`);
     } catch (error) {
       const message = parseError(error);
@@ -54,6 +60,7 @@ export const activate = (context: ExtensionContext): void => {
   const rebootDeviceCommandHandler = async (instance: CorelliumInstance) => {
     try {
       await apiInstance?.v1RebootInstance(instance.instanceUUID);
+      refreshDevicesCommandHandler();
       await window.showInformationMessage(`Rebooting ${instance.label}`);
     } catch (error) {
       const message = parseError(error);
@@ -64,6 +71,7 @@ export const activate = (context: ExtensionContext): void => {
   const pauseDeviceCommandHandler = async (instance: CorelliumInstance) => {
     try {
       await apiInstance?.v1PauseInstance(instance.instanceUUID);
+      refreshDevicesCommandHandler();
       await window.showInformationMessage(`Pausing ${instance.label}`);
     } catch (error) {
       const message = parseError(error);
@@ -74,6 +82,7 @@ export const activate = (context: ExtensionContext): void => {
   const unpauseDeviceCommandHandler = async (instance: CorelliumInstance) => {
     try {
       await apiInstance?.v1UnpauseInstance(instance.instanceUUID);
+      refreshDevicesCommandHandler();
       await window.showInformationMessage(`Unpausing ${instance.label}`);
     } catch (error) {
       const message = parseError(error);
@@ -192,10 +201,6 @@ export const activate = (context: ExtensionContext): void => {
       const message = parseError(error);
       await window.showErrorMessage(`Failed to restore snapshot: ${message}`);
     }
-  };
-
-  const refreshDevicesCommandHandler = () => {
-    virtualDevicesProvider.refresh();
   };
 
   setInterval(() => {

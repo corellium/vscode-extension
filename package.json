@@ -1,12 +1,15 @@
 {
   "name": "corellium-vscode",
-  "displayName": "Corellium VSCode Extension",
-  "description": "A VSCode extension for managing Corellium virtual devices.",
+  "publisher": "corellium",
+  "displayName": "Corellium VS Code Extension",
+  "description": "A VS Code extension for managing Corellium virtual devices.",
+  "icon": "icon.png",
   "version": "1.0.0",
   "engines": {
     "vscode": "^1.68.0"
   },
   "categories": [
+    "Testing",
     "Other"
   ],
   "activationEvents": [

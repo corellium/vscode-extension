@@ -1,5 +1,7 @@
 # Corellium VSCode Extension
 
+![Screenshot](/screenshot.png)
+
 ## Features
 
 - Start a device

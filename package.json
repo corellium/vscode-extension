@@ -177,6 +177,11 @@
     "extends": "./node_modules/@haydenbleasel/harmony/eslint.js",
     "parserOptions": {
       "project": "./tsconfig.json"
+    },
+    "rules": {
+      "no-console": "off",
+      "import/no-nodejs-modules": "off",
+      "jest/require-hook": "off"
     }
   },
   "prettier": "@haydenbleasel/harmony/prettier",

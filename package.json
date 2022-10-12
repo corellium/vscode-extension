@@ -133,6 +133,44 @@
           "command": "corellium.restoreSnapshot",
           "when": "view == virtualDevices && viewItem == on"
         }
+      ],
+      "commandPalette": [
+        {
+          "command": "corellium.startDevice",
+          "when": "false"
+        },
+        {
+          "command": "corellium.stopDevice",
+          "when": "false"
+        },
+        {
+          "command": "corellium.rebootDevice",
+          "when": "false"
+        },
+        {
+          "command": "corellium.pauseDevice",
+          "when": "false"
+        },
+        {
+          "command": "corellium.unpauseDevice",
+          "when": "false"
+        },
+        {
+          "command": "corellium.openInBrowser",
+          "when": "false"
+        },
+        {
+          "command": "corellium.openConsole",
+          "when": "false"
+        },
+        {
+          "command": "corellium.takeSnapshot",
+          "when": "false"
+        },
+        {
+          "command": "corellium.restoreSnapshot",
+          "when": "false"
+        }
       ]
     }
   },

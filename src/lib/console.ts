@@ -16,7 +16,8 @@ class CorelliumConsole implements Pseudoterminal {
     this.consoleWebSocket = new WebSocket(consoleWSUrl);
     this.consoleWebSocket.on('message', (data) => {
       const message =
-        typeof data === 'string' ? data : JSON.stringify(data, null, 2);
+        typeof data === 'string' ? data : (data as Buffer).toString();
+
       this.writeEmitter.fire(message);
     });
   }

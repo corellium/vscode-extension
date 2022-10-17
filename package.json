@@ -6,7 +6,7 @@
   "icon": "icon.png",
   "version": "1.0.0",
   "engines": {
-    "vscode": "^1.68.0"
+    "vscode": "^1.72.0"
   },
   "categories": [
     "Testing",
@@ -17,6 +17,10 @@
   ],
   "license": "ISC",
   "main": "./out/extension.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/corellium/vscode-extension"
+  },
   "contributes": {
     "commands": [
       {
@@ -175,8 +179,10 @@
     }
   },
   "scripts": {
-    "vscode:prepublish": "npm run compile",
-    "compile": "tsc -p ./",
+    "vscode:prepublish": "npm run build",
+    "prebuild": "rm -fr out",
+    "build": "tsc -p ./",
+    "postbuild": "cp {package.json,icon.png,README.md,LICENSE,screenshot.png} ./out && cp -r resources out",
     "watch": "tsc -watch -p ./",
     "pretest": "npm run compile && npm run lint",
     "lint": "eslint src --ext ts",

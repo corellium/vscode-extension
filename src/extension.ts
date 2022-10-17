@@ -205,7 +205,7 @@ export const activate = (context: ExtensionContext): void => {
 
   setInterval(() => {
     refreshDevicesCommandHandler();
-  }, 5000);
+  }, 10000);
 
   context.subscriptions.push(
     commands.registerCommand(

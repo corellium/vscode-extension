@@ -17,14 +17,13 @@ export const activate = (context: ExtensionContext): void => {
   const defaultClient = ApiClient.instance;
   const endpoint = configuration.get('endpoint');
   const apiKey = configuration.get('ApiKey');
-  const bearerAuth = defaultClient.authentications.BearerAuth;
 
   // Overwrite the default endpoint and bearer auth
   if (typeof endpoint === 'string') {
     defaultClient.basePath = `${endpoint}/api`;
   }
   if (typeof apiKey === 'string') {
-    bearerAuth.accessToken = apiKey;
+    defaultClient.authentications.BearerAuth.accessToken = apiKey;
   }
 
   apiInstance = new CorelliumApi();

@@ -166,14 +166,16 @@ export const activate = (context: ExtensionContext): void => {
   };
 
   const restoreSnapshotCommandHandler = async (instance: CorelliumInstance) => {
-    const items: QuickPickItem[] = [];
-
     try {
       const snapshots = await apiInstance?.v1GetSnapshots(
         instance.instanceUUID
       );
 
-      snapshots?.map((snapshot) => ({
+      if (!snapshots?.length) {
+        throw new Error('No snapshots returned');
+      }
+
+      const items: QuickPickItem[] = snapshots.map((snapshot) => ({
         label: snapshot.name,
         description: snapshot.id,
       }));

@@ -1,3 +1,15 @@
+# v1.0.4 (Tue Oct 18 2022)
+
+#### ⚠️ Pushed to `main`
+
+- Improve documentation and extension functionality around applying changes ([@haydenbleasel](https://github.com/haydenbleasel))
+
+#### Authors: 1
+
+- Hayden Bleasel ([@haydenbleasel](https://github.com/haydenbleasel))
+
+---
+
 # v1.0.3 (Tue Oct 18 2022)
 
 #### ⚠️ Pushed to `main`

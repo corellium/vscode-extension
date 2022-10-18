@@ -179,14 +179,13 @@
     }
   },
   "scripts": {
-    "vscode:prepublish": "npm run build",
-    "prebuild": "rm -fr out",
-    "build": "tsc -p ./",
-    "postbuild": "cp {package.json,icon.png,README.md,LICENSE,screenshot.png} ./out && cp -r resources out",
-    "watch": "tsc -watch -p ./",
-    "pretest": "npm run compile && npm run lint",
-    "lint": "eslint src --ext ts",
-    "test": "node ./out/test/runTest.js"
+    "vscode:prepublish": "npm run esbuild-base -- --minify",
+    "preesbuild-base": "rm -fr out",
+    "esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=out/extension.js --external:vscode --format=cjs --platform=node",
+    "esbuild": "npm run esbuild-base -- --sourcemap",
+    "esbuild-watch": "npm run esbuild-base -- --sourcemap --watch",
+    "test-compile": "tsc -p ./",
+    "dev": "tsc -watch -p ./"
   },
   "dependencies": {
     "@corellium/client-api": "^0.1.0",
@@ -212,6 +211,7 @@
     "@typescript-eslint/eslint-plugin": "^5.40.0",
     "@typescript-eslint/parser": "^5.40.0",
     "@vscode/test-electron": "^2.1.5",
+    "esbuild": "^0.15.11",
     "eslint": "^8.25.0",
     "glob": "^8.0.3",
     "mocha": "^10.0.0",

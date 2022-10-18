@@ -203,6 +203,8 @@
     "ws": "^8.9.0"
   },
   "devDependencies": {
+    "@auto-it/first-time-contributor": "^10.37.6",
+    "@auto-it/git-tag": "^10.37.6",
     "@types/glob": "^8.0.0",
     "@types/mocha": "^10.0.0",
     "@types/node": "18.x",
@@ -211,6 +213,7 @@
     "@typescript-eslint/eslint-plugin": "^5.40.0",
     "@typescript-eslint/parser": "^5.40.0",
     "@vscode/test-electron": "^2.1.5",
+    "auto": "^10.37.6",
     "esbuild": "^0.15.11",
     "eslint": "^8.25.0",
     "glob": "^8.0.3",
@@ -231,5 +234,6 @@
   "prettier": "@haydenbleasel/harmony/prettier",
   "stylelint": {
     "extends": "@haydenbleasel/harmony/stylelint"
-  }
+  },
+  "author": "Hayden Bleasel <hello@haydenbleasel.com>"
 }

@@ -1,0 +1,12 @@
+{
+  "plugins": [
+    "git-tag",
+    "first-time-contributor",
+    "released"
+  ],
+  "owner": "corellium",
+  "repo": "vscode-extension",
+  "name": "Hayden Bleasel",
+  "email": "hello@haydenbleasel.com",
+  "onlyPublishWithReleaseLabel": true
+}

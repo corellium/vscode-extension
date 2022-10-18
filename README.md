@@ -1,6 +1,6 @@
 # Corellium VSCode Extension
 
-![Screenshot](/screenshot.png)
+![Screenshot](https://github.com/corellium/vscode-extension/raw/main/screenshot.png)
 
 ## Features
 
@@ -15,10 +15,12 @@
 - Restore a snapshot
 - Refresh your list of devices
 
-## Installation (WIP)
+## Installation
 
-1. Install the extension from the [VSCode Marketplace](https://marketplace.visualstudio.com/items?itemName=corellium.corellium-vscode) or with the command `ext install corellium.corellium-vscode`.
-2. Open the extension settings and enter your Corellium API token.
+1. Install the extension from the [VSCode Marketplace](https://marketplace.visualstudio.com/items?itemName=corellium.corellium-vscode) or with the terminal command `code --install-extension corellium.corellium-vscode`.
+2. Open the extension settings and enter your Corellium API token (and optionally your endpoint).
+
+![Screenshot](/settings.png)
 
 ## Development
 

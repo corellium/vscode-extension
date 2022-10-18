@@ -50,6 +50,10 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
+      # Bump version and create a release
+      - name: Bump version
+        run: npx auto shipit
+
       # Build a package
       - name: Build
         run: npx vsce package

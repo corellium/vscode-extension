@@ -19,6 +19,7 @@
 
 1. Install the extension from the [VSCode Marketplace](https://marketplace.visualstudio.com/items?itemName=corellium.corellium-vscode) or with the terminal command `code --install-extension corellium.corellium-vscode`.
 2. Open the extension settings and enter your Corellium API token (and optionally your endpoint).
+3. Reload VSCode to apply the changes and start using the extension.
 
 ![Screenshot](/settings.png)
 

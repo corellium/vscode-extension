@@ -36,6 +36,20 @@ export const activate = (context: ExtensionContext): void => {
     virtualDevicesProvider.refresh();
   };
 
+  workspace.onDidChangeConfiguration(async (event) => {
+    const affected =
+      event.affectsConfiguration('corellium.endpoint') ||
+      event.affectsConfiguration('corellium.ApiKey');
+
+    if (affected) {
+      await window.showInformationMessage(
+        'Corellium configuration changed, please reload the window to apply changes and restart the extension.',
+        'Reload Window'
+      );
+      await commands.executeCommand('workbench.action.reloadWindow');
+    }
+  });
+
   // Command handlers
   const turnOnDeviceCommandHandler = async (instance: CorelliumInstance) => {
     try {

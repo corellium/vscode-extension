@@ -1,3 +1,16 @@
+# v1.0.2 (Tue Oct 18 2022)
+
+#### ⚠️ Pushed to `main`
+
+- Swap out git-tag for private npm (no publish) ([@haydenbleasel](https://github.com/haydenbleasel))
+- Remove unused style linter ([@haydenbleasel](https://github.com/haydenbleasel))
+
+#### Authors: 1
+
+- Hayden Bleasel ([@haydenbleasel](https://github.com/haydenbleasel))
+
+---
+
 # v0.1.0 (Tue Oct 18 2022)
 
 :tada: This release contains work from new contributors! :tada:

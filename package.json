@@ -192,7 +192,7 @@
     "@corellium/client-api": "^0.1.0",
     "@haydenbleasel/harmony": "^1.0.31",
     "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-jest": "^27.1.1",
+    "eslint-plugin-jest": "^27.2.0",
     "eslint-plugin-jsx-a11y": "^6.6.1",
     "eslint-plugin-react": "^7.31.9",
     "eslint-plugin-react-hooks": "^4.6.0",

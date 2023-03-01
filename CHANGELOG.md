@@ -1,3 +1,15 @@
+# v1.1.0 (Wed Mar 01 2023)
+
+#### 🚀 Enhancement
+
+- Bump @types/node from 18.8.3 to 18.11.18 [#30](https://github.com/corellium/vscode-extension/pull/30) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 1
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+
+---
+
 # v1.0.4 (Tue Oct 18 2022)
 
 #### ⚠️ Pushed to `main`

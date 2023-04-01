@@ -1,5 +1,3 @@
-/* eslint-disable import/unambiguous */
-
 declare module '@corellium/client-api' {
   export const ApiClient: {
     instance: {

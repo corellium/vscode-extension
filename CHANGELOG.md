@@ -1,3 +1,18 @@
+# v1.1.1 (Sat Apr 01 2023)
+
+#### ⚠️ Pushed to `main`
+
+- Delete dependabot.yaml ([@haydenbleasel](https://github.com/haydenbleasel))
+- Bump deps, lock vscode types ([@haydenbleasel](https://github.com/haydenbleasel))
+- Misc fixes ([@haydenbleasel](https://github.com/haydenbleasel))
+- Upgrade Harmony ([@haydenbleasel](https://github.com/haydenbleasel))
+
+#### Authors: 1
+
+- Hayden Bleasel ([@haydenbleasel](https://github.com/haydenbleasel))
+
+---
+
 # v1.1.0 (Wed Mar 01 2023)
 
 #### 🚀 Enhancement

@@ -1,3 +1,19 @@
+# v1.1.3 (Wed Jul 05 2023)
+
+:tada: This release contains work from a new contributor! :tada:
+
+Thank you, Bamdad Erfanian ([@bamerf](https://github.com/bamerf)), for all your work!
+
+#### 🐛 Bug Fix
+
+- fix(dep): CORE-2740 - upgrade jest and peer deps [#55](https://github.com/corellium/vscode-extension/pull/55) (bam@corellium.com)
+
+#### Authors: 1
+
+- Bamdad Erfanian ([@bamerf](https://github.com/bamerf))
+
+---
+
 # v1.1.2 (Wed Jul 05 2023)
 
 #### 🐛 Bug Fix

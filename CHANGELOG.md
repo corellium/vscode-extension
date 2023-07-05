@@ -1,3 +1,15 @@
+# v1.1.2 (Wed Jul 05 2023)
+
+#### 🐛 Bug Fix
+
+- Bump cookiejar from 2.1.3 to 2.1.4 [#54](https://github.com/corellium/vscode-extension/pull/54) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 1
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+
+---
+
 # v1.1.1 (Sat Apr 01 2023)
 
 #### ⚠️ Pushed to `main`

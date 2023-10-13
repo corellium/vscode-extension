@@ -1,6 +1,6 @@
-# Corellium VSCode Extension
+# AVH VSCode Extension
 
-![Screenshot](https://github.com/corellium/vscode-extension/raw/main/screenshot.png)
+![Screenshot](https://github.com/ARM-software/avh-vscode-extension/raw/main/screenshot.png)
 
 ## Features
 
@@ -17,8 +17,8 @@
 
 ## Installation
 
-1. Install the extension from the [VSCode Marketplace](https://marketplace.visualstudio.com/items?itemName=corellium.corellium-vscode) or with the terminal command `code --install-extension corellium.corellium-vscode`.
-2. Open the extension settings and enter your Corellium API token (and optionally your endpoint).
+1. Install the extension from the [VSCode Marketplace](https://marketplace.visualstudio.com/items?itemName=arm.avh-vscode-extension) or with the terminal command `code --install-extension arm.avh-vscode-extension`.
+2. Open the extension settings and enter your AVH API token (and optionally your endpoint).
 3. Reload VSCode to apply the changes and start using the extension.
 
 ![Screenshot](/settings.png)
@@ -29,6 +29,6 @@
 1. Clone the repo.
 2. Run `yarn install` to install dependencies.
 3. Run `yarn dev` to compile the extension and watch for changes.
-4. Open the `corellium` folder in VSCode.
+4. Open the project folder in VSCode.
 5. Launch a new VSCode window with the extension loaded. You can either press `F5` or open the command palette and run `Debug: Start Debugging`.
 6. Make changes to the extension and reload the extension to see them take effect.

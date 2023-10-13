@@ -1,9 +1,9 @@
 {
-  "name": "corellium-vscode",
-  "publisher": "corellium",
+  "name": "avh-vscode",
+  "publisher": "Arm",
   "private": true,
-  "displayName": "Corellium VS Code Extension",
-  "description": "A VS Code extension for managing Corellium virtual devices.",
+  "displayName": "AVH VS Code Extension",
+  "description": "A VS Code extension for managing AVH virtual devices.",
   "icon": "icon.png",
   "version": "1.0.0",
   "engines": {
@@ -20,73 +20,73 @@
   "main": "./out/extension.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/corellium/vscode-extension"
+    "url": "https://github.com/ARM-software/avh-vscode-extension"
   },
   "contributes": {
     "commands": [
       {
-        "command": "corellium.refreshDevices",
-        "title": "Corellium: Refresh Devices",
+        "command": "avh.refreshDevices",
+        "title": "AVH: Refresh Devices",
         "icon": {
           "light": "resources/light/refresh.svg",
           "dark": "resources/dark/refresh.svg"
         }
       },
       {
-        "command": "corellium.startDevice",
-        "title": "Corellium: Turn On Device"
+        "command": "avh.startDevice",
+        "title": "AVH: Turn On Device"
       },
       {
-        "command": "corellium.stopDevice",
-        "title": "Corellium: Turn Off Device"
+        "command": "avh.stopDevice",
+        "title": "AVH: Turn Off Device"
       },
       {
-        "command": "corellium.rebootDevice",
-        "title": "Corellium: Reboot Device"
+        "command": "avh.rebootDevice",
+        "title": "AVH: Reboot Device"
       },
       {
-        "command": "corellium.pauseDevice",
-        "title": "Corellium: Pause Device"
+        "command": "avh.pauseDevice",
+        "title": "AVH: Pause Device"
       },
       {
-        "command": "corellium.unpauseDevice",
-        "title": "Corellium: Unpause Device"
+        "command": "avh.unpauseDevice",
+        "title": "AVH: Unpause Device"
       },
       {
-        "command": "corellium.openInBrowser",
-        "title": "Corellium: Open in Browser"
+        "command": "avh.openInBrowser",
+        "title": "AVH: Open in Browser"
       },
       {
-        "command": "corellium.openConsole",
-        "title": "Corellium: Open Console"
+        "command": "avh.openConsole",
+        "title": "AVH: Open Console"
       },
       {
-        "command": "corellium.takeSnapshot",
-        "title": "Corellium: Take Snapshot"
+        "command": "avh.takeSnapshot",
+        "title": "AVH: Take Snapshot"
       },
       {
-        "command": "corellium.restoreSnapshot",
-        "title": "Corellium: Restore Snapshot"
+        "command": "avh.restoreSnapshot",
+        "title": "AVH: Restore Snapshot"
       }
     ],
     "views": {
       "explorer": [
         {
           "id": "virtualDevices",
-          "name": "Corellium Devices"
+          "name": "AVH Devices"
         }
       ]
     },
     "configuration": {
-      "title": "Corellium",
+      "title": "AVH",
       "properties": {
-        "corellium.endpoint": {
+        "avh.endpoint": {
           "type": "string",
-          "default": "https://app.corellium.com",
-          "description": "URL of the Corellium server (e.g. https://mycompany.enterprise.corellium.com)",
+          "default": "https://app.avh.arm.com",
+          "description": "URL of the AVH server (e.g. https://avh.arm.com)",
           "format": "uri"
         },
-        "corellium.ApiKey": {
+        "avh.ApiKey": {
           "type": "string",
           "default": "",
           "description": "The API key (from Profile->API in the web UI)"
@@ -96,84 +96,84 @@
     "menus": {
       "view/title": [
         {
-          "command": "corellium.refreshDevices",
+          "command": "avh.refreshDevices",
           "when": "view == virtualDevices",
           "group": "navigation"
         }
       ],
       "view/item/context": [
         {
-          "command": "corellium.startDevice",
+          "command": "avh.startDevice",
           "when": "view == virtualDevices && viewItem == off"
         },
         {
-          "command": "corellium.stopDevice",
+          "command": "avh.stopDevice",
           "when": "view == virtualDevices && viewItem == on"
         },
         {
-          "command": "corellium.rebootDevice",
+          "command": "avh.rebootDevice",
           "when": "view == virtualDevices && viewItem == on"
         },
         {
-          "command": "corellium.pauseDevice",
+          "command": "avh.pauseDevice",
           "when": "view == virtualDevices && viewItem == on"
         },
         {
-          "command": "corellium.unpauseDevice",
+          "command": "avh.unpauseDevice",
           "when": "view == virtualDevices && viewItem == paused"
         },
         {
-          "command": "corellium.openInBrowser",
+          "command": "avh.openInBrowser",
           "when": "view == virtualDevices"
         },
         {
-          "command": "corellium.openConsole",
+          "command": "avh.openConsole",
           "when": "view == virtualDevices && viewItem == on"
         },
         {
-          "command": "corellium.takeSnapshot",
+          "command": "avh.takeSnapshot",
           "when": "view == virtualDevices && viewItem == on"
         },
         {
-          "command": "corellium.restoreSnapshot",
+          "command": "avh.restoreSnapshot",
           "when": "view == virtualDevices && viewItem == on"
         }
       ],
       "commandPalette": [
         {
-          "command": "corellium.startDevice",
+          "command": "avh.startDevice",
           "when": "false"
         },
         {
-          "command": "corellium.stopDevice",
+          "command": "avh.stopDevice",
           "when": "false"
         },
         {
-          "command": "corellium.rebootDevice",
+          "command": "avh.rebootDevice",
           "when": "false"
         },
         {
-          "command": "corellium.pauseDevice",
+          "command": "avh.pauseDevice",
           "when": "false"
         },
         {
-          "command": "corellium.unpauseDevice",
+          "command": "avh.unpauseDevice",
           "when": "false"
         },
         {
-          "command": "corellium.openInBrowser",
+          "command": "avh.openInBrowser",
           "when": "false"
         },
         {
-          "command": "corellium.openConsole",
+          "command": "avh.openConsole",
           "when": "false"
         },
         {
-          "command": "corellium.takeSnapshot",
+          "command": "avh.takeSnapshot",
           "when": "false"
         },
         {
-          "command": "corellium.restoreSnapshot",
+          "command": "avh.restoreSnapshot",
           "when": "false"
         }
       ]

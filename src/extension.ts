@@ -13,7 +13,7 @@ let refreshTimer: NodeJS.Timer | null = null;
 
 export const activate = (context: ExtensionContext): void => {
   // Set up the API client object, note that apiInstance is global
-  const configuration = workspace.getConfiguration('corellium');
+  const configuration = workspace.getConfiguration('avh');
   const defaultClient = ApiClient.instance;
   const endpoint = configuration.get('endpoint');
   const apiKey = configuration.get('ApiKey');
@@ -38,12 +38,12 @@ export const activate = (context: ExtensionContext): void => {
 
   workspace.onDidChangeConfiguration(async (event) => {
     const affected =
-      event.affectsConfiguration('corellium.endpoint') ||
-      event.affectsConfiguration('corellium.ApiKey');
+      event.affectsConfiguration('avh.endpoint') ||
+      event.affectsConfiguration('avh.ApiKey');
 
     if (affected) {
       await window.showInformationMessage(
-        'Corellium configuration changed, please reload the window to apply changes and restart the extension.',
+        'AVH configuration changed, please reload the window to apply changes and restart the extension.',
         'Reload Window'
       );
       await commands.executeCommand('workbench.action.reloadWindow');
@@ -108,7 +108,7 @@ export const activate = (context: ExtensionContext): void => {
 
   const openInBrowserCommandHandler = async (instance: CorelliumInstance) => {
     const parsedEndpoint =
-      typeof endpoint === 'string' ? endpoint : 'https://app.corellium.com';
+      typeof endpoint === 'string' ? endpoint : 'https://app.avh.com';
     const url = new URL(
       `devices/${instance.instanceUUID}/connect`,
       parsedEndpoint
@@ -226,58 +226,37 @@ export const activate = (context: ExtensionContext): void => {
   }, 10000);
 
   context.subscriptions.push(
-    commands.registerCommand(
-      'corellium.startDevice',
-      turnOnDeviceCommandHandler
-    )
+    commands.registerCommand('avh.startDevice', turnOnDeviceCommandHandler)
+  );
+  context.subscriptions.push(
+    commands.registerCommand('avh.stopDevice', turnOffDeviceCommandHandler)
+  );
+  context.subscriptions.push(
+    commands.registerCommand('avh.rebootDevice', rebootDeviceCommandHandler)
+  );
+  context.subscriptions.push(
+    commands.registerCommand('avh.pauseDevice', pauseDeviceCommandHandler)
+  );
+  context.subscriptions.push(
+    commands.registerCommand('avh.unpauseDevice', unpauseDeviceCommandHandler)
+  );
+  context.subscriptions.push(
+    commands.registerCommand('avh.openInBrowser', openInBrowserCommandHandler)
+  );
+  context.subscriptions.push(
+    commands.registerCommand('avh.openConsole', openConsoleCommandHandler)
+  );
+  context.subscriptions.push(
+    commands.registerCommand('avh.takeSnapshot', takeSnapshotCommandHandler)
   );
   context.subscriptions.push(
     commands.registerCommand(
-      'corellium.stopDevice',
-      turnOffDeviceCommandHandler
-    )
-  );
-  context.subscriptions.push(
-    commands.registerCommand(
-      'corellium.rebootDevice',
-      rebootDeviceCommandHandler
-    )
-  );
-  context.subscriptions.push(
-    commands.registerCommand('corellium.pauseDevice', pauseDeviceCommandHandler)
-  );
-  context.subscriptions.push(
-    commands.registerCommand(
-      'corellium.unpauseDevice',
-      unpauseDeviceCommandHandler
-    )
-  );
-  context.subscriptions.push(
-    commands.registerCommand(
-      'corellium.openInBrowser',
-      openInBrowserCommandHandler
-    )
-  );
-  context.subscriptions.push(
-    commands.registerCommand('corellium.openConsole', openConsoleCommandHandler)
-  );
-  context.subscriptions.push(
-    commands.registerCommand(
-      'corellium.takeSnapshot',
-      takeSnapshotCommandHandler
-    )
-  );
-  context.subscriptions.push(
-    commands.registerCommand(
-      'corellium.restoreSnapshot',
+      'avh.restoreSnapshot',
       restoreSnapshotCommandHandler
     )
   );
   context.subscriptions.push(
-    commands.registerCommand(
-      'corellium.refreshDevices',
-      refreshDevicesCommandHandler
-    )
+    commands.registerCommand('avh.refreshDevices', refreshDevicesCommandHandler)
   );
 };
 

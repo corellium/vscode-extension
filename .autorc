@@ -4,8 +4,8 @@
     "first-time-contributor",
     "released"
   ],
-  "owner": "corellium",
-  "repo": "vscode-extension",
+  "owner": "ARM-software",
+  "repo": "avh-vscode-extension",
   "author": {
     "name": "Hayden Bleasel",
     "email": "hello@haydenbleasel.com"

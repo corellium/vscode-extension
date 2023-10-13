@@ -1,6 +1,6 @@
 # Corellium VSCode Extension
 
-![Screenshot](https://github.com/corellium/vscode-extension/raw/main/screenshot.png)
+![Screenshot](./screenshot.png)
 
 ## Features
 

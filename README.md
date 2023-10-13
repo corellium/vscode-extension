@@ -17,7 +17,7 @@
 
 ## Installation
 
-1. Install the extension from the [VSCode Marketplace](https://marketplace.visualstudio.com/items?itemName=arm.avh-vscode-extension) or with the terminal command `code --install-extension arm.avh-vscode-extension`.
+1. Install the extension from the [VSCode Marketplace](https://marketplace.visualstudio.com/items?itemName=Arm.avh-vscode-extension) or with the terminal command `code --install-extension Arm.avh-vscode-extension`.
 2. Open the extension settings and enter your AVH API token (and optionally your endpoint).
 3. Reload VSCode to apply the changes and start using the extension.
 

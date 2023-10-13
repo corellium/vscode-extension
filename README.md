@@ -1,6 +1,6 @@
 # AVH VSCode Extension
 
-![Screenshot](https://github.com/ARM-software/avh-vscode-extension/raw/main/screenshot.png)
+![Screenshot](./screenshot.png)
 
 ## Features
 

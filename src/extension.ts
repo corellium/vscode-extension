@@ -9,7 +9,7 @@ import VirtualDevicesProvider from './lib/virtualDevicesProvider';
 let apiInstance: CorelliumApi | null = null;
 
 // eslint-disable-next-line no-undef
-let refreshTimer: NodeJS.Timer | null = null;
+let refreshTimer: NodeJS.Timeout | null = null;
 
 export const activate = (context: ExtensionContext): void => {
   // Set up the API client object, note that apiInstance is global

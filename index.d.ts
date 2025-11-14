@@ -34,7 +34,7 @@ declare module '@corellium/client-api' {
     ): Promise<{
       id?: string;
     }>;
-    public v1GetSnapshots(
+    public v1GetInstanceSnapshots(
       instanceUUID: string,
       opts?: Record<string, unknown>
     ): Promise<
@@ -43,7 +43,7 @@ declare module '@corellium/client-api' {
         id: string;
       }[]
     >;
-    public v1RestoreSnapshot(
+    public v1RestoreInstanceSnapshot(
       instanceUUID: string,
       snapshotId: string,
       opts?: Record<string, unknown>

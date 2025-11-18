@@ -188,6 +188,12 @@
     "test-compile": "tsc -p ./",
     "dev": "tsc -watch -p ./"
   },
+  "resolutions": {
+    "@octokit/request": "^8.4.1",
+    "@octokit/request-error": "^5.1.1",
+    "@octokit/plugin-paginate-rest": "^9.2.2",
+    "glob": "^11.1.0"
+  },
   "dependencies": {
     "@corellium/client-api": "^0.4.0",
     "jest": "^29.7.0",

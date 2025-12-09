@@ -6,7 +6,6 @@ import type CorelliumInstance from './lib/corelliumInstance';
 import parseError from './lib/parseError';
 import VirtualDevicesProvider from './lib/virtualDevicesProvider';
 import { withInstance } from './lib/commandWrapper';
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
 let apiInstance: CorelliumApi | null = null;
 

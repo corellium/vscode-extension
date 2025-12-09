@@ -40,6 +40,9 @@
       "request": "launch",
       "name": "Launch Extension",
       "runtimeExecutable": "${execPath}",
+      "env": {
+        "NODE_TLS_REJECT_UNAUTHORIZED": "0"
+      },
       "args": [
         "--extensionDevelopmentPath=${workspaceFolder}"
       ],

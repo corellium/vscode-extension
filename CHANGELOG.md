@@ -1,3 +1,34 @@
+# v1.1.5 (Mon Dec 15 2025)
+
+:tada: This release contains work from new contributors! :tada:
+
+Thanks for all your work!
+
+:heart: Alex ([@rols2015](https://github.com/rols2015))
+
+:heart: Dan Thagard ([@dthagard](https://github.com/dthagard))
+
+#### 🐛 Bug Fix
+
+- chore(ci): upgrade Node.js to 22.x and update actions/setup-node & ac… [#59](https://github.com/corellium/vscode-extension/pull/59) (alex.kupryienka@corellium.com [@rols2015](https://github.com/rols2015))
+- fix(snapthots): CORE-5429 - VS Code Extension Snapshot feature has multiple problems [#58](https://github.com/corellium/vscode-extension/pull/58) (alex.kupryienka@corellium.com [@rols2015](https://github.com/rols2015))
+- feat(deps): CORE-13039 - Upgrade all dependencies to latest [#56](https://github.com/corellium/vscode-extension/pull/56) ([@dthagard](https://github.com/dthagard))
+
+#### ⚠️ Pushed to `main`
+
+- Update security workflow permissions (lenard@corellium.com)
+- Fix security workflow (lenard@corellium.com)
+- Add security workflow (lenard@corellium.com)
+
+#### Authors: 4
+
+- Alex ([@rols2015](https://github.com/rols2015))
+- Alex Kupryienka (alex.kupryienka@corellium.com)
+- Dan Thagard ([@dthagard](https://github.com/dthagard))
+- Lenard Gutierrez (lenard@corellium.com)
+
+---
+
 # v1.1.4 (Fri Oct 13 2023)
 
 #### ⚠️ Pushed to `main`

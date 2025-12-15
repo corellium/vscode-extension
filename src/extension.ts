@@ -5,6 +5,7 @@ import CorelliumConsole from './lib/console';
 import type CorelliumInstance from './lib/corelliumInstance';
 import parseError from './lib/parseError';
 import VirtualDevicesProvider from './lib/virtualDevicesProvider';
+import { withInstance } from './lib/commandWrapper';
 
 let apiInstance: CorelliumApi | null = null;
 
@@ -183,7 +184,7 @@ export const activate = (context: ExtensionContext): void => {
 
   const restoreSnapshotCommandHandler = async (instance: CorelliumInstance) => {
     try {
-      const snapshots = await apiInstance?.v1GetSnapshots(
+      const snapshots = await apiInstance?.v1GetInstanceSnapshots(
         instance.instanceUUID
       );
 
@@ -207,7 +208,7 @@ export const activate = (context: ExtensionContext): void => {
         throw new Error('No snapshot ID returned');
       }
 
-      await apiInstance?.v1RestoreSnapshot(
+      await apiInstance?.v1RestoreInstanceSnapshot(
         instance.instanceUUID,
         selection.description
       );
@@ -228,19 +229,19 @@ export const activate = (context: ExtensionContext): void => {
   context.subscriptions.push(
     commands.registerCommand(
       'corellium.startDevice',
-      turnOnDeviceCommandHandler
+        withInstance(turnOnDeviceCommandHandler)
     )
   );
   context.subscriptions.push(
     commands.registerCommand(
       'corellium.stopDevice',
-      turnOffDeviceCommandHandler
+        withInstance(turnOffDeviceCommandHandler)
     )
   );
   context.subscriptions.push(
     commands.registerCommand(
       'corellium.rebootDevice',
-      rebootDeviceCommandHandler
+        withInstance(rebootDeviceCommandHandler)
     )
   );
   context.subscriptions.push(
@@ -249,13 +250,13 @@ export const activate = (context: ExtensionContext): void => {
   context.subscriptions.push(
     commands.registerCommand(
       'corellium.unpauseDevice',
-      unpauseDeviceCommandHandler
+        withInstance(unpauseDeviceCommandHandler)
     )
   );
   context.subscriptions.push(
     commands.registerCommand(
       'corellium.openInBrowser',
-      openInBrowserCommandHandler
+        withInstance(openInBrowserCommandHandler)
     )
   );
   context.subscriptions.push(
@@ -264,13 +265,13 @@ export const activate = (context: ExtensionContext): void => {
   context.subscriptions.push(
     commands.registerCommand(
       'corellium.takeSnapshot',
-      takeSnapshotCommandHandler
+        withInstance(takeSnapshotCommandHandler)
     )
   );
   context.subscriptions.push(
     commands.registerCommand(
       'corellium.restoreSnapshot',
-      restoreSnapshotCommandHandler
+        withInstance(restoreSnapshotCommandHandler)
     )
   );
   context.subscriptions.push(

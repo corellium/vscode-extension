@@ -5,9 +5,9 @@
   "displayName": "Corellium VS Code Extension",
   "description": "A VS Code extension for managing Corellium virtual devices.",
   "icon": "icon.png",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "engines": {
-    "vscode": "^1.72.0"
+    "vscode": "^1.99.0"
   },
   "categories": [
     "Testing",
@@ -187,6 +187,12 @@
     "esbuild-watch": "npm run esbuild-base -- --sourcemap --watch",
     "test-compile": "tsc -p ./",
     "dev": "tsc -watch -p ./"
+  },
+  "resolutions": {
+    "@octokit/request": "^8.4.1",
+    "@octokit/request-error": "^5.1.1",
+    "@octokit/plugin-paginate-rest": "^9.2.2",
+    "glob": "^11.1.0"
   },
   "dependencies": {
     "@corellium/client-api": "^0.4.0",

@@ -1,7 +1,3 @@
-type CorelliumError = {
-  error: Error;
-};
-
 const parseError = (error: unknown): string => {
   if (error instanceof Error) {
     return error.message;
@@ -12,7 +8,8 @@ const parseError = (error: unknown): string => {
     Object.hasOwnProperty.call(error, 'error') &&
     (error as { error?: Error }).error instanceof Error
   ) {
-    return (error as CorelliumError).error.message;
+    const err = error as any;
+    return err?.body?.error || err?.message || 'Unknown error';
   }
   return `${error as string}`;
 };
